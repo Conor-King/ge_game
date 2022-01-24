@@ -2,8 +2,13 @@
 
 int main(){
   sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-  sf::CircleShape shape(100.f);
-  shape.setFillColor(sf::Color::Green);
+  sf::CircleShape circleShape(90.f);
+  circleShape.setFillColor(sf::Color::Magenta);
+  circleShape.setPosition(sf::Vector2f(10, 10));
+
+  sf::RectangleShape rectShape;
+  rectShape.setSize(sf::Vector2f(200,200));
+  rectShape.setFillColor(sf::Color::Cyan);
 
   while (window.isOpen()){
       sf::Event event;
@@ -13,7 +18,8 @@ int main(){
       }
     }
     window.clear();
-    window.draw(shape);
+    window.draw(rectShape);
+    window.draw(circleShape);
     window.display();
   }
   return 0;
