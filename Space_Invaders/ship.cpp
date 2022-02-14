@@ -24,7 +24,7 @@ Ship::~Ship() = default;
 Invader::Invader() : Ship() {}
 
 bool Invader::direction;
-float Invader::speed;
+float Invader::speed = 50; // Ships speed here.
 
 Invader::Invader(sf::IntRect ir, sf::Vector2f pos) : Ship(ir) {
     setOrigin(Vector2f(16.f, 16.f));;
@@ -41,5 +41,21 @@ void Invader::Update(const float& dt) {
         for (int i = 0; i < ships.size(); ++i) {
             ships[i]->move(Vector2f(0.0f, 24.0f));
         }
+    }
+}
+
+Player::Player() : Ship(IntRect(Vector2(160, 32), Vector2(32, 32))) {
+    setPosition({ gameWidth * .5f, gameHeight - 32.f });
+}
+
+void Player::Update(const float& dt) {
+    Ship::Update(dt);
+    if (Keyboard::isKeyPressed(Keyboard::A)) {
+        // Move left
+
+    }
+    if (Keyboard::isKeyPressed(Keyboard::D)) {
+        // Move right
+
     }
 }
