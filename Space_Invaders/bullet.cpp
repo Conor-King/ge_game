@@ -1,40 +1,46 @@
 #include "bullet.h";
 #include "game.h"
 #include "ship.h"
-#include "main.cpp"
 	
 using namespace sf;
 using namespace std;
 
-Bullet selectedBullet;
+unsigned char Bullet::bulletPointer;
+Bullet Bullet::bullets[256];
 
-Bullet::Bullet() {};
+Bullet::Bullet() {}
 
 void Bullet::Init() {
 
-	for (auto b : bullets) {
+	for (auto &b : bullets) {
 		b.setPosition(Vector2f(-100, -100));
 		b.setTexture(spritesheet);
+		b.setTextureRect(IntRect(Vector2(32, 32), Vector2(32, 32)));
 		b.setOrigin(Vector2f(0.f, 0.f));
 	}
 }
 
 void Bullet::Fire(const Vector2f &pos, bool mode) {
-	selectedBullet = bullets[++bulletPointer];
-	selectedBullet._mode = mode;
-	selectedBullet.setPosition(pos);
+
+	bulletPointer++;
+	bullets[bulletPointer]._mode = mode;
+	bullets[bulletPointer].setPosition(pos);
 }
 
 void Bullet::Render(RenderWindow &window) {
 
-	if (selectedBullet._mode == false) {
+	/*if (selectedBullet._mode == false) {
 		selectedBullet.setTextureRect(IntRect(Vector2(64, 32), Vector2(32, 32)));
+	}*/
+
+	for (const auto b : bullets)
+	{
+		window.draw(b);
 	}
-	window.draw(selectedBullet);
 }
 
 void Bullet::Update(const float &dt) {
-	for (auto b : bullets) {
+	for (auto &b : bullets) {
 		b._Update(dt);
 	}
 }

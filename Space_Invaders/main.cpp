@@ -31,11 +31,12 @@ void Load() {
                 auto inv = new Invader(rect, position);
                 ships.push_back(inv);
         }
-
     }
 
     Player* player = new Player();
     ships.push_back(player);
+
+    Bullet::Init();
 }
 
 void Update(RenderWindow& window) {
@@ -48,7 +49,6 @@ void Update(RenderWindow& window) {
     }
 
     Bullet::Update(dt);
-    
 }
 
 void Render(RenderWindow& window) {
