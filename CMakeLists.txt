@@ -20,4 +20,41 @@ link_directories("${CMAKE_BINARY_DIR}/lib/sfml/lib")
 file(GLOB_RECURSE SOURCES practical_1/*.cpp practical_1/*.h)
 add_executable(PRACTICAL_1 ${SOURCES})
 target_include_directories(PRACTICAL_1 PRIVATE ${SFML_INCS})
+<<<<<<< Updated upstream
 target_link_libraries(PRACTICAL_1 sfml-graphics)
+=======
+target_link_libraries(PRACTICAL_1 sfml-graphics)
+
+set_target_properties(PRACTICAL_1 
+    PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Configuration)
+)
+
+add_dependencies(PRACTICAL_1 copy_resources)
+
+## Space invaders
+file(GLOB_RECURSE SOURCES Space_Invaders/*.cpp Space_Invaders/*.h)
+add_executable(2_INVADERS ${SOURCES} )
+target_include_directories(2_INVADERS SYSTEM PRIVATE ${SFML_INCS})
+target_link_libraries(2_INVADERS sfml-graphics)
+
+set_target_properties(2_INVADERS 
+    PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Configuration)
+)
+
+add_dependencies(2_INVADERS copy_resources)
+
+## Tile Engine
+file(GLOB_RECURSE SOURCES Tile_Engine/*.cpp Tile_Engine/*.h)
+add_executable(TileEngine ${SOURCES} )
+target_include_directories(TileEngine SYSTEM PRIVATE ${SFML_INCS})
+target_link_libraries(TileEngine sfml-graphics)
+
+set_target_properties(TileEngine 
+    PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Configuration)
+)
+
+add_dependencies(TileEngine copy_resources)
+>>>>>>> Stashed changes
