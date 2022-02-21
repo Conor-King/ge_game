@@ -2,6 +2,7 @@
 #include <iostream>
 #include "ship.h"
 #include "game.h"
+#include "bullet.h"
 
 using namespace sf;
 using namespace std;
@@ -23,15 +24,18 @@ void Load() {
     //ships.push_back(inv);
 
     for (int r = 0; r < invaders_rows; ++r) {
-        auto rect = IntRect(Vector2(0, 0), Vector2(32, 32)); //Add something here
+        auto rect = IntRect(Vector2(0, 0), Vector2(32, 32)); 
 
         for (int c = 0; c < invaders_columns; ++c) {
-                Vector2f position =  Vector2f(c * 32 + 16 , r * 32 + 16); // Add something here
+                Vector2f position =  Vector2f(c * 32 + 16 , r * 32 + 16);
                 auto inv = new Invader(rect, position);
                 ships.push_back(inv);
         }
 
     }
+
+    Player* player = new Player();
+    ships.push_back(player);
 }
 
 void Update(RenderWindow& window) {
@@ -42,6 +46,9 @@ void Update(RenderWindow& window) {
     for (auto& s : ships) {
         s->Update(dt);
     }
+
+    Bullet::Update(dt);
+    
 }
 
 void Render(RenderWindow& window) {
@@ -50,6 +57,8 @@ void Render(RenderWindow& window) {
     for (const auto s : ships) {
         window.draw(*s);
     }
+
+    Bullet::Render(window);
 }
 
 int main() {
