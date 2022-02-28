@@ -71,7 +71,3 @@ void Bullet::_Update(const float& dt) {
 		}
 	}
 }
-
-// Can't see if the bullets are actually working since they don't show up in the game.
-// Getting an error every time the program starts.
-
