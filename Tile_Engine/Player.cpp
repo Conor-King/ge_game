@@ -26,7 +26,7 @@ void Player::Update(double dt) {
 
 Player::Player() : _speed(200.f), Entity(make_unique<CircleShape>(25.f)) {
 	_shape->setFillColor(Color::Magenta);
-	_shape->setOrigin(Vector2f(25.f, 25.f));
+	_shape->setOrigin(Vector2f(0.f, 0.f));
 }
 
 void Player::Render(sf::RenderWindow& window) const {

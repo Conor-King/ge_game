@@ -6,8 +6,7 @@
 using namespace sf;
 using namespace std;
 
-extern vector<Ship*> ships;
-
+Ship::Ship() {};
 
 Ship::Ship(IntRect ir, bool player) : Sprite() {
   _sprite = ir;

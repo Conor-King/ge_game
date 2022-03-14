@@ -9,37 +9,38 @@ using namespace std;
 int gameWidth = 800;
 int gameHeight = 600;
 
-unique_ptr<Player> _player(new Player);
-
-void Load() {
-    
-}
+unique_ptr<Player> player(new Player);
 
 void Update(RenderWindow& window) {
-    // Reset clock, recalculate deltatime.
     static Clock clock;
     float dt = clock.restart().asSeconds();
 
-    _player->Update(dt);
+    // Check and consume events
+    Event event;
+    while (window.pollEvent(event)) {
+        if (event.type == Event::Closed) {
+            window.close();
+            return;
+        }
+    }
 
+    // Quit via ESC key.
+    if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+        window.close();
+    }
+    
+    player->Update(dt);
 }
 
 void Render(RenderWindow& window) {
-   
-    _player->Render(window);
+    // Draw everything
+    player->Render(window);
 }
 
 int main() {
 
-    RenderWindow window(VideoMode(gameWidth, gameHeight), "Space Invaders");
-    Load();
+    RenderWindow window(VideoMode(gameWidth, gameHeight), "Tile Engine");
     while (window.isOpen()) {
-        Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == Event::Closed) {
-                window.close();
-            }
-        }
         window.clear();
         Update(window);
         Render(window);
