@@ -8,18 +8,18 @@ void Player::Update(double dt) {
 	float directY = 0.f;
 	float directX = 0.f;
 	if (Keyboard::isKeyPressed(Keyboard::W)) {
-		directY++;
-	}
-	if (Keyboard::isKeyPressed(Keyboard::S)) {
 		directY--;
 	}
-	if (Keyboard::isKeyPressed(Keyboard::A)) {
-		directX++;
+	if (Keyboard::isKeyPressed(Keyboard::S)) {
+		directY++;
 	}
-	if (Keyboard::isKeyPressed(Keyboard::D)) {
+	if (Keyboard::isKeyPressed(Keyboard::A)) {
 		directX--;
 	}
-	_shape->move(Vector2f(directX * _speed * dt, directY * _speed * dt));
+	if (Keyboard::isKeyPressed(Keyboard::D)) {
+		directX++;
+	}
+	move(Vector2f(directX * _speed * dt, directY * _speed * dt));
 
 	Entity::Update(dt);
 }
