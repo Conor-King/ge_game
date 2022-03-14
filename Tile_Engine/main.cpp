@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "LevelSystem.h"
 #include "Entity.h"
 #include "Player.h"
 
@@ -10,6 +11,21 @@ int gameWidth = 800;
 int gameHeight = 600;
 
 unique_ptr<Player> player(new Player);
+
+void Load() {
+
+    ls::loadLevelFile("res/levels/maze.txt");
+
+    // print the level to the console
+    for (size_t y = 0; y < ls::getHeight(); y++) {
+        for (size_t x = 0; x < ls::getWidth(); x++) {
+            cout << ls::getTile({ x, y });
+        }
+        cout << endl;
+    }
+
+    
+}
 
 void Update(RenderWindow& window) {
     static Clock clock;
@@ -34,12 +50,14 @@ void Update(RenderWindow& window) {
 
 void Render(RenderWindow& window) {
     // Draw everything
+    ls::Render(window);
     player->Render(window);
 }
 
 int main() {
 
     RenderWindow window(VideoMode(gameWidth, gameHeight), "Tile Engine");
+    Load();
     while (window.isOpen()) {
         window.clear();
         Update(window);

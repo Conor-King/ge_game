@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include "maths.h"
 
 #define ls LevelSystem
 
@@ -16,6 +17,7 @@ public:
 	static void Render(sf::RenderWindow& window);
 	static sf::Color getColor(TILE t);
 	static void setColor(TILE t, sf::Color c);
+
 
 	// Get Tile at grid coordinate
 	static TILE getTile(sf::Vector2ul);

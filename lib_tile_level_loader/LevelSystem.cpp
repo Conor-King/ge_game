@@ -1,5 +1,4 @@
 #include "LevelSystem.h"
-#include "\Users\Conor\Desktop\GE_Games\lib_maths\maths.h"
 #include <fstream>
 #include <iostream>
 
@@ -97,7 +96,7 @@ void LevelSystem::loadLevelFile(const string& path, float tileSize) {
 	_height = h;
 	copy(temp_tiles.begin(), temp_tiles.end(), &_tiles[0]);
 	cout << "Level " << path << " Loaded " << w << "x" << h << endl;
-	buildSprites;
+	buildSprites();
 }
 
 void LevelSystem::buildSprites() {
