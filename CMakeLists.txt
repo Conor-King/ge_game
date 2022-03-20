@@ -21,3 +21,50 @@ file(GLOB_RECURSE SOURCES practical_1/*.cpp practical_1/*.h)
 add_executable(PRACTICAL_1 ${SOURCES})
 target_include_directories(PRACTICAL_1 PRIVATE ${SFML_INCS})
 target_link_libraries(PRACTICAL_1 sfml-graphics)
+
+set_target_properties(PRACTICAL_1 
+    PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Configuration)
+)
+
+add_dependencies(PRACTICAL_1 copy_resources)
+
+## Space invaders
+file(GLOB_RECURSE SOURCES Space_Invaders/*.cpp Space_Invaders/*.h)
+add_executable(2_INVADERS ${SOURCES} )
+target_include_directories(2_INVADERS SYSTEM PRIVATE ${SFML_INCS})
+target_link_libraries(2_INVADERS sfml-graphics)
+
+set_target_properties(2_INVADERS 
+    PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Configuration)
+)
+
+add_dependencies(2_INVADERS copy_resources)
+
+## Tile Engine
+file(GLOB_RECURSE SOURCES Tile_Engine/*.cpp Tile_Engine/*.h)
+add_executable(TileEngine ${SOURCES} )
+target_include_directories(TileEngine SYSTEM PRIVATE ${SFML_INCS})
+target_link_libraries(TileEngine sfml-graphics lib_tile_level_loader lib_maths)
+
+set_target_properties(TileEngine 
+    PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Configuration)
+)
+
+add_dependencies(TileEngine copy_resources)
+
+## Pacman
+file(GLOB_RECURSE SOURCES Pacman/*.cpp Pacman/*.h)
+add_executable(Pacman ${SOURCES} )
+target_include_directories(Pacman SYSTEM PRIVATE ${SFML_INCS})
+target_link_libraries(Pacman sfml-graphics)
+
+set_target_properties(Pacman 
+    PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Configuration)
+)
+
+add_dependencies(Pacman copy_resources)
+>>>>>>> Stashed changes
