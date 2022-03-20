@@ -72,3 +72,16 @@ set_target_properties(TileEngine
 )
 
 add_dependencies(TileEngine copy_resources)
+
+## Pacman
+file(GLOB_RECURSE SOURCES Pacman/*.cpp Pacman/*.h)
+add_executable(Pacman ${SOURCES} )
+target_include_directories(Pacman SYSTEM PRIVATE ${SFML_INCS})
+target_link_libraries(Pacman sfml-graphics)
+
+set_target_properties(Pacman 
+    PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Configuration)
+)
+
+add_dependencies(Pacman copy_resources)
