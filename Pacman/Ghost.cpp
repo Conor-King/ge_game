@@ -7,10 +7,10 @@ using namespace std;
 
 bool validMove(Vector2f pos) {
 
-	if (pos.x < 0 || pos.x > 1000) {
+	if (pos.x < 0 + 10 || pos.x > 1000 - 10) {
 		return false;
 	}
-	else if (pos.y < 0 || pos.y > 1000) {
+	else if (pos.y < 0 + 10 || pos.y > 1000 - 10) {
 		return false;
 	}
 	else {
@@ -28,7 +28,7 @@ void Ghost::Update(double dt) {
 	if (moves == 0) {
 		newDirection = rand() % 4;
 	}
-	else if (moves < 10000) {
+	else if (moves < maxMoves) {
 		newDirection = direction;
 	}
 	else {
@@ -68,23 +68,23 @@ void Ghost::Update(double dt) {
 
 	if (!validMove(getPosition() + Vector2f(directX * 10.f, directY * 10.f))) {
 		directX = 0;
-		moves = 10000;
+		moves = maxMoves;
 	}
 		
 
 	if (!validMove(getPosition() + Vector2f(directX * 10.f, directY * 10.f))) {
 		directY = 0;
-		moves = 10000;
+		moves = maxMoves;
 	}
 
 	move(Vector2f(directX * _speed * dt, directY * _speed * dt));
 	Entity::Update(dt);
 }
 
-Ghost::Ghost(Color color) : _speed(100.f), Entity(make_unique<CircleShape>(10.f)) {
+Ghost::Ghost(Color color) : _speed(200.f), Entity(make_unique<CircleShape>(10.f)) {
 	_shape->setFillColor(color);
 	_shape->setOrigin(Vector2f(10.f, 10.f));
-	_shape->setPosition(Vector2f(500.f, 500.f));
+	setPosition(Vector2f(500.f, 500.f));
 }
 
 void Ghost::Render(sf::RenderWindow& window) const {

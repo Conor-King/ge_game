@@ -20,3 +20,9 @@ public:
     void setPosition(const sf::Vector2f& pos);
     void move(const sf::Vector2f& pos);
 };
+
+struct EntityManager {
+    std::vector<std::shared_ptr<Entity>> list;
+    void Update(double dt);
+    void Render(sf::RenderWindow& window);
+};

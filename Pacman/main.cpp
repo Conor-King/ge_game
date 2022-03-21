@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "Ghost.h"
 #include "Player.h"
+#include "system_renderer.h"
 
 using namespace sf;
 using namespace std;
@@ -10,22 +11,24 @@ using namespace std;
 int gameWidth = 1000;
 int gameHeight = 1000;
 
+EntityManager em;
+
 vector<Entity*> entityList;
 
 void Load() {
     
     // Creating the ghosts in the game and assigning colors.
-    for (int i = 0; i < 4; i++)
+    for (int i = 1; i < 5; i++)
     {
-        Color colors[4] = { Color::Red, Color::Blue, Color::Green, Color::Magenta };
+        Color colors[4] = { Color::Red, Color::Blue, Color::Green, Color::Magenta};
 
-        auto ghost = new Ghost(colors[i + 1]);
+        shared_ptr<Entity> ghost(new Ghost(colors[i]));
 
-        entityList.push_back(ghost);
+        em.list.push_back(ghost);
     }
 
-    Player* player(new Player);
-    entityList.push_back(player);
+    shared_ptr<Entity> player(new Player);
+    em.list.push_back(player);
 }
 
 void Update(RenderWindow& window) {
@@ -33,20 +36,23 @@ void Update(RenderWindow& window) {
     static Clock clock;
     float dt = clock.restart().asSeconds();
 
-    for (auto& e : entityList) {
+    for (auto& e : em.list) {
         e->Update(dt);
     }
 }
 
 void Render(RenderWindow& window) {
-    for (auto& e : entityList) {
+    for (auto& e : em.list) {
         e->Render(window);
     }
+
+    Renderer::render();
 }
 
 int main() {
 
     RenderWindow window(VideoMode(gameWidth, gameHeight), "Pacman");
+    Renderer::initialise(window);
     Load();
 
     while (window.isOpen()) {
