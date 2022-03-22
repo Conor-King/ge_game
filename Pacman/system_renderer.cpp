@@ -16,7 +16,9 @@ void Renderer::shutdown() {
 		sprites.pop();
 }
 
-void Renderer::update(const double&) {}
+void Renderer::update(const double&) {
+
+}
 
 void Renderer::render() {
 	if (rw == nullptr) {
