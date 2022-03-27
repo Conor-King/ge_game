@@ -16,11 +16,7 @@ shared_ptr<Scene> activeScene;
 
 void Scene::render() { _ents.Render(Renderer::getWindow()); }
 
-void Scene::update(double dt) {
-
-	// Add something here?
-
-}
+void Scene::update(double dt) { _ents.Update(dt); }
 
 vector<shared_ptr<Entity>>& Scene::getEnts() { return _ents.list; }
 
@@ -35,7 +31,7 @@ void MenuScene::update(double dt) {
 }
 
 void MenuScene::render() {
-	Renderer::queue(&text);
+	Renderer::queue(&text); // This is broken here
 	Scene::render();
 }
 
@@ -48,7 +44,7 @@ void MenuScene::load() {
 		cout << "Font problems";
 	}
 	
-	font.loadFromFile("res/fonts/font.ttf");
+	//font.loadFromFile("res/fonts/font.ttf");
 	text.setFont(font);
 	text.setCharacterSize(30);
 	text.setFillColor(Color::White);
