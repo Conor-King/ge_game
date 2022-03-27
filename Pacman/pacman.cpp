@@ -43,12 +43,12 @@ void MenuScene::load() {
 
 	Font font;
 
-	if (!font.loadFromFile("res/font.ttf"))
+	if (!font.loadFromFile("res/fonts/font.ttf"))
 	{
 		cout << "Font problems";
 	}
 	
-	
+	font.loadFromFile("res/fonts/font.ttf");
 	text.setFont(font);
 	text.setCharacterSize(30);
 	text.setFillColor(Color::White);
