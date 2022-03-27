@@ -48,7 +48,16 @@ void Update(RenderWindow& window) {
     static Clock clock;
     float dt = clock.restart().asSeconds();
 
-    Renderer::update(dt);
+    // Check and consume events
+    Event event;
+    while (window.pollEvent(event)) {
+        if (event.type == Event::Closed) {
+            window.close();
+            return;
+        }
+    }
+
+    //Renderer::update(dt);
     activeScene->update(dt);
 
     //for (auto& e : em.list) {
@@ -57,13 +66,10 @@ void Update(RenderWindow& window) {
 }
 
 void Render(RenderWindow& window) {
-    
 
-    
-    Renderer::render();
     activeScene->render();
 
-    
+    Renderer::render();
 }
 
 int main() {
@@ -73,12 +79,6 @@ int main() {
     Load();
 
     while (window.isOpen()) {
-        Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == Event::Closed) {
-                window.close();
-            }
-        }
         window.clear();
         Update(window);
         Render(window);

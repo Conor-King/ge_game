@@ -1,4 +1,5 @@
 #include "Ghost.h"
+#include "system_renderer.h"
 #include <iostream>
 
 using namespace sf;

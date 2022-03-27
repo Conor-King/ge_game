@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "Ghost.h"
 #include "Player.h"
+#include <iostream>
 
 using namespace sf;
 using namespace std;
@@ -15,9 +16,13 @@ shared_ptr<Scene> activeScene;
 
 void Scene::render() { _ents.Render(Renderer::getWindow()); }
 
-void Scene::update(double dt) {}
+void Scene::update(double dt) {
 
-vector<shared_ptr<Entity>>& Scene::getEnts() { return _ents.list; } // Return something?
+	// Add something here?
+
+}
+
+vector<shared_ptr<Entity>>& Scene::getEnts() { return _ents.list; }
 
 void MenuScene::update(double dt) {
 
@@ -37,11 +42,17 @@ void MenuScene::render() {
 void MenuScene::load() {
 
 	Font font;
-	font.loadFromFile("res/font.ttf");
 
-	text.setCharacterSize(30);
+	if (!font.loadFromFile("res/font.ttf"))
+	{
+		cout << "Font problems";
+	}
+	
+	
 	text.setFont(font);
+	text.setCharacterSize(30);
 	text.setFillColor(Color::White);
+	text.setStyle(Text::Bold);
 }
 
 void GameScene::load() {
