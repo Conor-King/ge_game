@@ -9,6 +9,7 @@ extern std::shared_ptr<Scene> activeScene;
 class MenuScene : public Scene {
 private:
 	sf::Text text;
+	sf::Font font;
 
 public:
 	MenuScene() = default;

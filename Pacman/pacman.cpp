@@ -13,6 +13,7 @@ using namespace std;
 shared_ptr<Scene> gameScene;
 shared_ptr<Scene> menuScene;
 shared_ptr<Scene> activeScene;
+//Text MenuScene::text;
 
 void Scene::render() { _ents.Render(Renderer::getWindow()); }
 
@@ -37,7 +38,7 @@ void MenuScene::render() {
 
 void MenuScene::load() {
 
-	Font font;
+	//Font font;
 
 	if (!font.loadFromFile("res/fonts/font.ttf"))
 	{
